@@ -1,5 +1,4 @@
 import requests
-import json
 from tkinter import *
 from tkinter import ttk
 
@@ -14,7 +13,7 @@ def get_crypto_rate():
             response.raise_for_status()
             data = response.json()
             rate = data[crypto][currency]
-            result_label.config(text=f"1 {crypto} = {rate} {currency.upper()}")
+            result_label.config(text=f"1 {crypto} = {rate:,.2f}".replace(",", " ") + f" {currency.upper()}")
         except Exception as e:
             result_label.config(text=f"Ошибка: {e}")
     else:
@@ -43,7 +42,7 @@ crypto_combobox.pack(pady=10)
 crypto_combobox.set('bitcoin')
 
 Button(text="Обновить курс", command=get_crypto_rate).pack(pady=10)
-result_label = Label(text="")
+result_label = Label(text="", font=("Verdana", 11))
 result_label.pack(pady=20)
 
 root.mainloop()
