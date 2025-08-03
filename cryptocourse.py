@@ -1,7 +1,7 @@
 import requests
 import json
 from tkinter import *
-from tkinter import messagebox as mb, ttk
+from tkinter import ttk
 
 
 def get_crypto_rate():
@@ -33,12 +33,12 @@ root.title("Курсы криптовалют")
 root.geometry("400x300")
 
 Label(text="Выберите валюту:").pack(pady=10)
-currency_combobox = ttk.Combobox(root, values=currencies)
+currency_combobox = ttk.Combobox(root, values=currencies, state="readonly")
 currency_combobox.pack(pady=10)
 currency_combobox.set('rub')
 
 Label(text="Выберите криптовалюту:").pack(pady=10)
-crypto_combobox = ttk.Combobox(values=cryptocurrencies)
+crypto_combobox = ttk.Combobox(root, values=cryptocurrencies, state="readonly")
 crypto_combobox.pack(pady=10)
 crypto_combobox.set('bitcoin')
 
